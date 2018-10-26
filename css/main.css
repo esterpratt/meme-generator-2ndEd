@@ -27,6 +27,7 @@ aside h2 {
 
 .text-editor {
     padding: 0 10px;
+    overflow: hidden;
 }
 
 .text-editor a, .text-editor i, .text-editor label, .editing-options input, .editing-options select {
@@ -43,14 +44,7 @@ aside h2 {
 }
 
 .text-editor div {
-    /* display: flex; */
-    /* flex-wrap: nowrap; */
-    /* justify-content: space-around; */
-    /* align-items: center; */
-    /* padding: 10px 0; */
     color: black;
-    /* font-size: 40px; */
-    /* text-align: center; */
 }
 
 .text-editor i {
