@@ -6,7 +6,7 @@ var gCurrKeyword;
 
 function createImgs() {
     gImgs = [
-        createImg('img/003.jpg', ['trump', 'stupid', 'man']),
+        createImg('img/long.jpg', ['trump', 'stupid', 'man']),
         createImg('img/004.jpg', ['cute', 'dog', 'cute']),
         createImg('img/005.jpg', ['dog', 'kid', 'sleepy']),
         createImg('img/006.jpg', ['cat', 'sleepy']),

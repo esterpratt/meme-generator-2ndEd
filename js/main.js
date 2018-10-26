@@ -44,13 +44,28 @@ function initCanvas() {
     var img;
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
-
+    
     var imageRatio = img.width / img.height;
-    var canvasComputed = {};
-    canvasComputed = { width: gCanvas.width, height: gCanvas.width / imageRatio };
+    // // if img height is more than canvas
+    // if (img.height > gCanvas.height) {
+    //     img.height = gCanvas.height;
+    //     img.width = img.height / imageRatio;
+    //     console.log(img.height / imageRatio, img.width);
+    // }
 
+    var canvasComputed = {};
+    
+    canvasComputed = { width: gCanvas.width, height: gCanvas.width / imageRatio };
+    
+    // if computed height is smaller than canvas - miminize canvas height
     if (canvasComputed.height < gCanvas.height) {
         gCanvas.height = canvasComputed.height;
+    } else {
+        // if width is more than height - miminize width
+        if (imageRatio >= 1) {
+            let ratio = img.height / gCanvas.height;
+            gCanvas.width = img.width / ratio;
+        }
     }
 
     // update aside to canvas height if desktop

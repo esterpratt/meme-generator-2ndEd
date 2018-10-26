@@ -2,7 +2,7 @@
     
     .grid-container {
         grid-row-gap: 35px;
-        grid-template-columns: 35% 65%;
+        grid-template-columns: 45% 55%;
         grid-template-rows: 130px 60% auto 80px;
         grid-template-areas:
         'header header'
@@ -24,7 +24,7 @@
     } */
 
     /* main {
-        width: 100%;
+        max-width: 600px;
         margin: 0;
     } */
 
@@ -37,7 +37,7 @@
     
     aside {
         width: calc(100% - 10px);
-        margin: 0 0 0 2px;
+        margin: 0 0 0 10px;
     }
     
     aside h2 {
@@ -124,6 +124,6 @@
     }
 
     .font-size-control {
-        width: 50%;
+        width: 45%;
     }
 }
