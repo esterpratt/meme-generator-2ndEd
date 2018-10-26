@@ -201,7 +201,7 @@ function getLineCorectY() {
         // if its the second line and the first one is on top
     } else if (gMeme.txts.length === 1) {
         // if the first one is on top - put the second down
-        if (gMeme.txts[0].y < 100) {
+        if (gMeme.txts[0].y < 150) {
             y = gCanvas.height - 30;
             // if the first one in down - put the second top
         } else {
