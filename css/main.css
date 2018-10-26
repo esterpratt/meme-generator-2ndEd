@@ -87,7 +87,7 @@ aside h2 {
 }
 
 .colorInput, .strokeColorInput {
-    width: 50%;
+    width: 60%;
 }
 
 .fontSelector {
@@ -96,11 +96,15 @@ aside h2 {
     font-family: 'Alef', sans-serif;
 }
 
+.sizenmove {
+    width: 47%;
+}
+
 .font-size-control {
     height: 70px;
 }
 
-.line-edit {
+.line-move {
     display: grid;
     grid-template: 1fr 1fr 1fr / 1fr 1fr 1fr;
     width: 100px;
