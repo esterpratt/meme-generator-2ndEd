@@ -183,7 +183,13 @@ function onClickCanvas(ev) {
 }
 
 function onAddNewLine() {
-    addNewLine(getCurrentValues());
+    // if there is a line selected - add new line with default values.
+    // if not - add new line with current values that user chose
+    var currentValues;
+    if (!gMeme.selectedLine) {
+        currentValues = getCurrentValues();
+    }
+    addNewLine(currentValues);
     renderMeme();
 }
 

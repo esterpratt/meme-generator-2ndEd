@@ -29,6 +29,7 @@ function createLine(size, x, y, color, strokeColor, fontFamily) {
 }
 
 function addNewLine(currentValues) {
+    
     // if there is a line selected - remove selection
     if (gMeme.selectedLine) {
         checkIfLineEmpty(gMeme.selectedLine);
@@ -39,10 +40,18 @@ function addNewLine(currentValues) {
     var size = 50;
     var x = 20;
     var y = getLineCorectY();
-    var color = currentValues.color;
-    var strokeColor = currentValues.strokeColor;
-    var font = currentValues.font;
-
+    var color;
+    var strokeColor;
+    var font;
+    if (currentValues) {
+        color = currentValues.color;
+        strokeColor = currentValues.strokeColor;
+        font = currentValues.font;
+    } else {
+        color = '#000000';
+        strokeColor = '#ffffff';
+        font = 'impact';
+    }
     gMeme.selectedLine = createLine(size, x, y, color, strokeColor, font);
 }
 
