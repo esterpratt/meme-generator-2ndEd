@@ -12,7 +12,8 @@
     'controller'
     'footer';
     grid-row-gap: 5px;
-    height: 100vh;
+    /* Without height of address bar in chrome mobile */
+    height: calc(100vh - 56px);
 }
 
 body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{

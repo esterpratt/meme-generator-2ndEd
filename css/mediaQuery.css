@@ -37,6 +37,7 @@
     .grid-container {
         grid-row-gap: 15px;
         grid-template-rows: 55px 7fr 6fr 1fr 40px;
+        height: 100vh;
     }
 
     main {
