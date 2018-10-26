@@ -385,6 +385,7 @@ function renderKeywords() {
 function returnToGallery(ev) {
     ev.preventDefault();
     document.body.classList.add('gallery');
+    document.querySelector('main').style.display = 'none';
     document.querySelector('.gallery-container').style.display = 'inherit';
     initGallery();
 }
@@ -456,6 +457,7 @@ function onKeyPress(ev) {
 function onSelectImg(id) {
     document.body.classList.remove('gallery');
     document.querySelector('.gallery-container').style.display = 'none';
+    document.querySelector('main').style.display = 'flex';
     createMeme(id);
     initCanvas();
     renderMeme();

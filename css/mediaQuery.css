@@ -16,17 +16,8 @@
         grid-row-gap: 15px;
         grid-template-columns: 100%;
         grid-template-rows: 130px 1fr 80px;
+        min-height: 100vh;
     }
-
-    /* main {
-        width: 70%;
-        margin: 0 auto;
-    } */
-
-    /* main {
-        max-width: 600px;
-        margin: 0;
-    } */
 
     aside {
         width: 80%;
@@ -46,7 +37,6 @@
         font-size:30px;
         line-height: 30px; 
         padding:10px;
-        /* margin-bottom: 20px; */
     }
 
     aside li {
@@ -60,24 +50,10 @@
     .btn-control {
         font-size: 25px;
     }
-    
-    /* .editing-options {
-        margin-top: 20px;
-    } */
-
-    /* .grid-container {
-        grid-row-gap: 15px;
-        grid-template-rows: 55px 7fr 6fr 1fr 40px;
-        height: 100vh;
-    } */
 
     header .title h1 {
         font-size: 56px;
     }
-
-    /* .editing-options {
-        height: 60%;
-    } */
 
     .text-editor {
         justify-content: space-around;
