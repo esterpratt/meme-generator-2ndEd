@@ -1,0 +1,33 @@
+@import 'helpers.css';
+@import 'base.css';
+@import 'grid.css';
+@import 'header.css';
+@import 'gallery.css';
+@import 'eraseModal.css';
+@import 'main.css';
+@import 'mediaQuery.css';
+
+@font-face {
+    font-family: 'impact';
+    src: url('../fonts/impact.ttf');
+}
+
+@font-face {
+    font-family: 'arial';
+    src: url('../fonts/arial.ttf');
+}
+
+@font-face {
+    font-family: 'Alef';
+    src: url('../fonts/Alef.ttf');
+}
+
+@font-face {
+    font-family: 'david';
+    src: url('../fonts/david.ttf');
+}
+
+@font-face {
+    font-family: 'ShadowsIntoLight';
+    src: url('../fonts/ShadowsIntoLight.ttf');
+}

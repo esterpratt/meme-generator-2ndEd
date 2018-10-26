@@ -1,0 +1,34 @@
+/* GRID */
+
+.grid-container {
+    /* box-sizing: border-box; */
+    display: grid;
+    grid-template-columns: 100%;
+    grid-template-rows: 55px 4fr 3fr 1fr 40px;
+    grid-template-areas:
+    'header'
+    'main'
+    'aside'
+    'controller'
+    'footer';
+    grid-row-gap: 5px;
+    height: 100vh;
+}
+
+body.gallery aside, body.gallery .tools, body.gallery .controller, body.gallery #canvas{
+    display: none;
+}
+
+body.gallery .grid-container {
+    grid-template-columns: 100%;
+    width: 100%;
+    grid-template-rows: 55px 1fr 40px;
+    grid-template-areas:
+    'header'
+    'gallery'
+    'footer';
+}
+
+.grid-container > * {
+    color:white;
+}

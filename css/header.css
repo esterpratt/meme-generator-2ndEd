@@ -1,0 +1,27 @@
+header {
+    grid-area: header; 
+    display: flex;
+    justify-content: space-evenly;
+    background: black;
+    border-radius: 0px;
+    line-height: 55px;
+    box-shadow: inset 0px -5px 0px 0px rgb(218, 81, 47);
+}
+header .title h1 {
+    font-size:36px;
+    padding: 0 15px;
+    margin:0px;
+}
+
+header .lang-btn {
+    padding: 0 15px;
+}
+
+.translate {
+    border-radius: 10px;
+    border: 1px solid rgba(2018, 81, 47, 0.479);
+    border-bottom: 2px solid rgb(218, 81, 47);
+    padding: 2px;
+    font-size: 15px;
+    font-family: 'Alef', sans-serif;
+}

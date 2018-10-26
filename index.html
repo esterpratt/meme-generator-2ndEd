@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>meme'tasek?</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Alef" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="shortcut icon" type="image/x-icon" href="img/icon.png" />
+</head>
+
+<body onload="init()" onmouseup="onMouseUp()" class="gallery">
+    <div class="grid-container">
+        <header>
+            <div class="title flex align-center">
+                <h1 data-translate="title">meme'tasek?</h1>
+            </div>
+            <div class="lang-btn flex align-center">
+                <select class="translate" onchange="changeLanguage(value)">
+                    <option value="eng">ENG</option>
+                    <option value="heb">עבר</option>
+                </select>
+            </div>
+        </header>
+        <div class="gallery-container">
+            <div class="keywords-container flex flex-column align-center">
+                <input class="keywords-input" list="keywords-list" placeholder="Enter search word" onchange="onKeywordSelect(value)">
+                <datalist id="keywords-list">
+                    <!-- INJECT WITH JS -->
+                </datalist>
+
+                <ul class="keywords">
+                    <!-- LI - INJECT WITH JS -->
+                </ul>
+
+            </div>
+            <div class="gallery-items">
+                <!-- HERE COMES THE GALLERY -->
+            </div>
+        </div>
+        <main class="flex">
+            <canvas id="canvas" onmousedown="onClickCanvas(event)" style="direction:ltr"></canvas>
+        </main>
+        <aside>
+            <!-- Text Editor -->
+            <h2 class="editorHeadline" data-translate="texteditor">New Line Editor</h2>
+            <div class="text-editor flex flex-column space-between">
+                <div class="text-input flex space-between">
+                    <input class="textInput" data-translate="inputtext" type="text" placeholder="Enter Text" oninput="onEnterText(this.value)" onkeypress="onKeyPress(event)" />
+                    <!-- New line -->
+                    <a href="#" onclick="onAddNewLine()" class="align-self-center" title="Add New Line"><i class="fas fa-plus"></i></a>
+                    <!-- Eraser -->
+                    <a href="#" onclick="onEraseClick()" class="align-self-center"><i class="fas fa-trash-alt"></i></a>
+                </div>
+                <div class="editing-options flex space-between">
+                    <div class="font-edit flex flex-column space-between">
+                        <!-- Font Color -->
+                        <label class="font-color flex space-between">
+                            Font:
+                            <input class="colorInput" type="color" value="#000000" onchange="onChangeTextColor(this.value)">
+                        </label>
+                        <label class="stroke-color flex space-between">
+                            Stroke:
+                            <input class="strokeColorInput" type="color" value="#ffffff" onchange="onChangeStrokeColor(this.value)">
+                        </label>
+                        <!-- Font Family -->
+                        <label class="font-family flex space-between">
+                            <select class="fontSelector" onchange="onChangeFontFamily(this.value)">
+                                <option value="impact">Impact</option>
+                                <option value="arial">Arial</option>
+                                <option value="Alef">Alef</option>
+                                <option value="david">David</option>
+                                <option value="ShadowsIntoLight">Shadows</option>
+                            </select>
+                        </label>
+                    </div>
+                    <!-- Font Size -->
+                    <div class="font-size-control align-self-center flex flex-column space-between align-center">
+                        <!-- <label class="flex"> -->
+                            <i onclick="onChangeFontSize('plus')" class="fas fa-plus"></i>
+                            <i onclick="onChangeFontSize('minus')" class="fas fa-minus"></i>
+                        <!-- </label> -->
+                    </div>
+                    <div class="line-edit align-self-center">
+                        <!-- <label class="arrows"> -->
+                        <i onclick="onMoveCanvasEl('left')" class="fas fa-arrow-left arrow-left"></i>
+                        <i onclick="onMoveCanvasEl('up')" class="fas fa-arrow-up arrow-up"></i>
+                        <i onclick="onMoveCanvasEl('down')" class="fas fa-arrow-down arrow-down"></i>
+                        <i onclick="onMoveCanvasEl('right')" class="fas fa-arrow-right arrow-right"></i>
+                        <!-- </label> -->
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <div class="controller">
+            <a href="" onclick="returnToGallery(event)" class="btn btn-control">
+                <i class="fas fa-arrow-left"></i>
+                <span data-translate="btnback" title="Back to gallery">Back</span>
+            </a>
+
+            <a href="" class="btn btn-control" onclick="onShareMeme(event)">
+                <i class="fas fa-share-alt"></i>
+                <span data-translate="btnshare" title="Share with friends">Share</span>
+            </a>
+            <a href="" class="btn btn-control">
+                <i class="fas fa-file-upload"></i>
+                <span data-translate="btnupload" title="Upload to server">
+                    <label for="imgData">Upload</label>
+                </span>
+            </a>
+            <input type="file" name="upload" id="imgData" onchange="onUploadImgBtn(event)" style="display:none">
+
+            <a href="" onclick="onDownloadImage(this)" class="btn btn-control download">
+                <i class="fas fa-download"></i>
+                <span data-translate="btndownload" title="Download image">Download</span>
+            </a>
+        </div>
+        <footer data-translate="headfooter">⛬ SHARE WITH LOVE ❤
+            <div class="publish-form-container"></div>
+        </footer>
+    </div>
+
+    <!-- Erase Modal -->
+    <div class="erase-modal-container">
+        <div class="modal-content flex flex-column space-between">
+            <h2 class="align-self-center" data-translate="modalheadline">Are you sure you want to delete <span class="what-to-delete">line</span>?</h2>
+            <div class="modal-buttons align-self-center flex space-between">
+                <button onclick="onCancelDelete()" data-translate="deletebtncancel">Cancel</button>
+                <button onclick="onDelete()" data-translate="deletebtn">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tool to render fonts for first time -->
+    <div class="preLoadFonts" style="visibility: hidden">
+        <span style="font-family: 'impact'"></span>
+        <span style="font-family: 'arial'"></span>
+        <span style="font-family: 'Alef'"></span>
+        <span style="font-family: 'david'"></span>
+        <span style="font-family: 'ShadowsIntoLight'"></span>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/meme-service.js"></script>
+    <script src="js/util-service.js"></script>
+    <script src="js/internationalization.js"></script>
+    <script src="js/upload-service.js"></script>
+    <script src="js/gallery-service.js"></script>
+
+</body>
+
+</html>
