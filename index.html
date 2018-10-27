@@ -27,7 +27,7 @@
         </header>
         <div class="gallery-container">
             <div class="keywords-container flex flex-column align-center">
-                <input class="keywords-input" list="keywords-list" placeholder="Enter search word" onchange="onKeywordSelect(value)">
+                <input class="keywords-input" list="keywords-list" data-translate="searchKeyword" placeholder="Enter search word" onchange="onKeywordSelect(value)">
                 <datalist id="keywords-list">
                     <!-- INJECT WITH JS -->
                 </datalist>
@@ -59,11 +59,11 @@
                     <div class="font-edit flex flex-column space-between">
                         <!-- Font Color -->
                         <label class="font-color flex space-between">
-                            Font:
+                            <span data-translate="font">Font</span>:
                             <input class="colorInput" type="color" value="#000000" onchange="onChangeTextColor(this.value)">
                         </label>
                         <label class="stroke-color flex space-between">
-                            Stroke:
+                            <span data-translate="stroke">Stroke</span>:
                             <input class="strokeColorInput" type="color" value="#ffffff" onchange="onChangeStrokeColor(this.value)">
                         </label>
                         <!-- Font Family -->
@@ -129,7 +129,7 @@
     <!-- Erase Modal -->
     <div class="erase-modal-container">
         <div class="modal-content flex flex-column space-between">
-            <h2 class="align-self-center" data-translate="modalheadline">Are you sure you want to delete <span class="what-to-delete">line</span>?</h2>
+            <h2 class="align-self-center whatToDelete" data-translate="modalheadline">Are you sure you want to delete line?</h2>
             <div class="modal-buttons align-self-center flex space-between">
                 <button onclick="onCancelDelete()" data-translate="deletebtncancel">Cancel</button>
                 <button onclick="onDelete()" data-translate="deletebtn">Delete</button>

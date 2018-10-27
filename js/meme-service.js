@@ -29,7 +29,7 @@ function createLine(size, x, y, color, strokeColor, fontFamily) {
 }
 
 function addNewLine(currentValues) {
-    
+
     // if there is a line selected - remove selection
     if (gMeme.selectedLine) {
         checkIfLineEmpty(gMeme.selectedLine);
@@ -99,26 +99,29 @@ function changeFontSize(line, value) {
     line.size += value;
 }
 
-function moveCanvasEl(direction) {
-    var line = gMeme.selectedLine;
+function moveCanvasEl(line, direction) {
     var moveLenght = 10;
-    if (!line) return;
-    else {
-        switch (direction) {
-            case 'left':
+    switch (direction) {
+        case 'left':
+            if (line.x + line.width > 30) {
                 line.x -= moveLenght;
-                break;
-            case 'right':
+            }
+            break;
+        case 'right':
+            if (line.x < gCanvas.width - 30) {
                 line.x += moveLenght;
-                break;
-            case 'up':
+            }
+            break;
+        case 'up':
+            if (line.y > 30) {
                 line.y -= moveLenght;
-                break;
-            case 'down':
+            }
+            break;
+        case 'down':
+            if (line.y - line.size < gCanvas.height - 30) {
                 line.y += moveLenght;
-                break;
-        }
-        renderMeme();
+            }
+            break;
     }
 }
 

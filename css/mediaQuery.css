@@ -76,34 +76,11 @@
     .font-size-control {
         width: 45%;
     }
-
-    /* aside {
-        width: 80%;
-        margin: 0 auto;
-        box-shadow: inset 0px 50px 0px 0px rgba(0,0,0,1); 
-        border: 1px black solid;
-    } */
     
     aside {
         width: calc(100% - 10px);
         margin: 0 0 0 10px;
     }
-    
-    /* aside h2 {
-        display: block;
-        color:white;
-        font-size:30px;
-        line-height: 30px; 
-        padding:10px;
-    } */
-
-    /* aside li {
-        font-size:1.2em
-    }
-
-    aside li span.time {
-        display:inherit
-    } */
     
     .btn-control {
         font-size: 25px;

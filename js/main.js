@@ -148,7 +148,10 @@ function onChangeFontFamily(font) {
 }
 
 function onMoveCanvasEl(direction) {
-    moveCanvasEl(direction);
+    if (gMeme.selectedLine) {
+        moveCanvasEl(gMeme.selectedLine, direction);
+        renderMeme();
+    }
 }
 
 function onClickCanvas(ev, isMobile = false) {
@@ -172,7 +175,6 @@ function onClickCanvas(ev, isMobile = false) {
     });
 
     var eventToAdd = 'mousemove';
-
     // if on mobile - different event
     if (isMobile) {
         eventToAdd = 'touchmove';
@@ -214,7 +216,13 @@ function onAddNewLine() {
     if (!gMeme.selectedLine) {
         currentValues = getCurrentValues();
     }
+
     addNewLine(currentValues);
+
+    // get focus on input
+    var elInput = document.querySelector('.textInput');
+    elInput.focus();
+
     renderMeme();
 }
 
@@ -223,7 +231,7 @@ function getLineCorectY() {
     // if its the first line - put it on top
     if (!gMeme.txts.length) {
         y = 65;
-        // if its the second line and the first one is on top
+        // if its the second line
     } else if (gMeme.txts.length === 1) {
         // if the first one is on top - put the second down
         if (gMeme.txts[0].y < 150) {
@@ -251,26 +259,30 @@ function drag(ev) {
 
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
-    
+
     // if on mobile - different calc
-    if (ev.type === 'touchmove') {    
+    if (ev.type === 'touchmove') {
         mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
         mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
-
-        // TODO: handle moving out of canvas if mobile
     }
 
-    gMeme.selectedLine.x += mouseX - gPrevPos.x;
-    gMeme.selectedLine.y += mouseY - gPrevPos.y;
-
-    gPrevPos.x = mouseX;
-    gPrevPos.y = mouseY;
-
-    renderMeme();
+    var newX = gMeme.selectedLine.x + (mouseX - gPrevPos.x);
+    var newY = gMeme.selectedLine.y + (mouseY - gPrevPos.y);
+    
+    // if in range of canvas (relevant for mobile)
+    if (newX + gMeme.selectedLine.width > 0 && newX < gCanvas.width && 
+        newY > 0 && newY - gMeme.selectedLine.size < gCanvas.height) {
+        gMeme.selectedLine.x = newX;
+        gMeme.selectedLine.y = newY;
+    
+        gPrevPos.x = mouseX;
+        gPrevPos.y = mouseY;
+    
+        renderMeme();
+    }
 }
 
-// TODO: remove ev parameter - not used
-function onMouseUp(ev) {
+function onMouseUp() {
     if (gIsMoving) {
         gCanvas.removeEventListener('mousemove', drag, false);
         gIsMoving = false;
@@ -310,6 +322,7 @@ function renderMeme() {
             gCtx.fillStyle = line.color;
             gCtx.fillText(line.txt, line.x, line.y);
 
+            // paint stroke text 
             gCtx.strokeStyle = line.strokeColor;
             gCtx.strokeText(line.txt, line.x, line.y);
         }
@@ -338,6 +351,7 @@ function renderTextEditor(line) {
     var elTextInput = document.querySelector('.textInput');
     var elFont = document.querySelector('.fontSelector');
 
+    // TODO: render according to lang
     // if there is line selected
     if (line) {
         elHeadline.innerHTML = 'Edit Line';
@@ -425,11 +439,12 @@ function onEraseClick() {
     elErase.classList.add('open');
 
     // update modal
-    var elWhatToDelete = document.querySelector('.what-to-delete');
+    // TODO: render according to lang
+    var elWhatToDelete = document.querySelector('.whatToDelete');
     if (gMeme.selectedLine && gMeme.selectedLine.txt !== '') {
-        elWhatToDelete.innerHTML = 'line';
+        elWhatToDelete.innerHTML = 'Are you sure you want to delete line?';
     } else {
-        elWhatToDelete.innerHTML = 'all';
+        elWhatToDelete.innerHTML = 'Are you sure you want to delete all?';
     }
 }
 
@@ -511,7 +526,7 @@ function onUploadImgBtn(ev) {
     handleImageFromInput(ev, uploadNewImg);
 }
 
-// SHARE IMG functions
+// SHARE functions
 
 function onShareMeme(ev) {
     ev.preventDefault();

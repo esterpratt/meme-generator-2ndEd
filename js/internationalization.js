@@ -20,7 +20,8 @@ var gTranslations = {
         modalheadline: 'Are you sure you want to delete all?',
         deletebtn: 'Delete',
         deletebtncancel: 'Cancel',
-
+        font: 'Font',
+        stroke: 'Stroke',
     },
     heb: {
         isRtl: true,
@@ -36,6 +37,8 @@ var gTranslations = {
         modalheadline: 'האם אתה בטוח שתרצה למחוק?',
         deletebtn: 'מחק',
         deletebtncancel: 'ביטול',
+        font: 'מילוי',
+        stroke: 'קו',
     }
 }
 
@@ -59,12 +62,16 @@ var gTranslationsTitles = {
 function getUserLang() {
     return gLanguage;
 }
+
 var gTranslationsPlaceholder = {
     eng: {
         inputtext: 'Enter Text',
+        searchKeyword: 'Enter Search Word',
     },
     heb: {
-        inputtext: 'הזן טקסט',    }
+        inputtext: 'הזן טקסט',
+        searchKeyword: 'הכנס מילת חיפוש',
+    }
 }
 
 function changeLanguage(lang) {

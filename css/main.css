@@ -64,7 +64,6 @@ aside h2 {
 }
 
 .editing-options {
-    /* overflow-y: auto; */
     margin-top: 1px;
 }
 
@@ -135,7 +134,6 @@ aside h2 {
     justify-content: space-evenly;
     text-align: center;
     border-radius: 15px;
-    /* margin: 0 5px; */
 }
 
 .btn-control {

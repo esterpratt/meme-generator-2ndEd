@@ -39,6 +39,7 @@ function uploadNewImg(imgEl) {
     gMeme.elImg = imgEl;
     deleteAll();
     initCanvas();
+    renderTextEditor();
     renderMeme();
 }
 
