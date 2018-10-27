@@ -5,6 +5,8 @@
 // TODO: CONTINUOUS MOVING - on mousedown instead of onclick - 
 //       set interval and remove it when mouse is up.
 //       also - implement it on keyboard arrows.
+// TODO: when gMeme.txts is empty - 
+//       don't show delete modal/tell user there is nothing to delete
 
 var gCanvas;
 var gCtx;
