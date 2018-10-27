@@ -61,11 +61,10 @@ aside h2 {
     width: 80%;
     border-bottom: 2px solid rgb(218, 81, 47);
     font-family: 'Alef', sans-serif;
-    overflow: hidden;
 }
 
 .editing-options {
-    overflow-y: auto;
+    /* overflow-y: auto; */
     margin-top: 1px;
 }
 
