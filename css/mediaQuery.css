@@ -1,5 +1,57 @@
-@media (min-width: 768px){
+@media (min-width: 768px) {
+
+    .grid-container {
+        grid-row-gap: 10px; 
+        grid-template-rows: 100px 50% 26% 1fr 40px;
+        height: 100vh;
+    }
     
+    body.gallery .grid-container {
+        grid-row-gap: 15px;
+        grid-template-columns: 100%;
+        grid-template-rows: 100px 1fr 40px;
+        min-height: 100vh;
+    }
+
+    header .title h1 {
+        font-size: 56px;
+    }
+
+    aside {
+        width: 80%;
+        margin: 0 auto;
+        box-shadow: inset 0px 50px 0px 0px rgba(0,0,0,1); 
+        border: 1px black solid;
+    }
+
+    aside h2 {
+        display: block;
+        color:white;
+        font-size:30px;
+        line-height: 30px; 
+        padding:10px;
+    }
+
+    .text-input {
+        padding: 2px 10px 0;
+    }
+
+    .editing-options {
+        margin-top: 3px;
+    }
+
+    .sizenmove {
+        margin-left: 10px;
+        width: 35%;
+    }
+
+    footer {
+        line-height: 40px;
+    }
+}
+
+@media (min-width: 920px) {
+
     .grid-container {
         grid-row-gap: 35px;
         grid-template-columns: 45% 55%;
@@ -11,48 +63,50 @@
         'footer footer';
         height: 100vh;
     }
-    
+
     body.gallery .grid-container {
-        grid-row-gap: 15px;
-        grid-template-columns: 100%;
         grid-template-rows: 130px 1fr 80px;
-        min-height: 100vh;
     }
 
-    aside {
+    .editing-options {
+        margin-top: 40px;
+        height: 60%;
+    }
+
+    .font-size-control {
+        width: 45%;
+    }
+
+    /* aside {
         width: 80%;
         margin: 0 auto;
         box-shadow: inset 0px 50px 0px 0px rgba(0,0,0,1); 
         border: 1px black solid;
-    }
+    } */
     
     aside {
         width: calc(100% - 10px);
         margin: 0 0 0 10px;
     }
     
-    aside h2 {
+    /* aside h2 {
         display: block;
         color:white;
         font-size:30px;
         line-height: 30px; 
         padding:10px;
-    }
+    } */
 
-    aside li {
+    /* aside li {
         font-size:1.2em
     }
 
     aside li span.time {
         display:inherit
-    }
+    } */
     
     .btn-control {
         font-size: 25px;
-    }
-
-    header .title h1 {
-        font-size: 56px;
     }
 
     .text-editor {
@@ -72,6 +126,7 @@
     .sizenmove {
         flex-direction: column;
         margin-left: 10px;
+        width: 45%;
     }
 
     .line-move {
@@ -81,7 +136,7 @@
     .font-size-control {
         flex-direction: row-reverse;
         align-items: flex-start;
-        width: 70%;
+        width: 55%;
     }
 
     .font-edit {
@@ -90,16 +145,5 @@
 
     footer {
         line-height: 80px;
-    }
-}
-
-@media (min-width: 920px) {
-    .editing-options {
-        margin-top: 40px;
-        height: 60%;
-    }
-
-    .font-size-control {
-        width: 45%;
     }
 }

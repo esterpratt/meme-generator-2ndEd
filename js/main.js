@@ -69,7 +69,7 @@ function initCanvas() {
     }
 
     // update aside to canvas height if desktop
-    if (window.innerWidth >= 768) {
+    if (window.innerWidth >= 920) {
         var asideEl = document.querySelector('aside');
         asideEl.style.height = `${gCanvas.height}px`;
     }
