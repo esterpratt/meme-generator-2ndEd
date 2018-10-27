@@ -3,7 +3,6 @@ main {
     grid-area: main;
     border-radius: 15px;
     margin: 0 5px;
-    overflow: hidden;
 }
 
 canvas {
@@ -63,6 +62,7 @@ aside h2 {
     width: 80%;
     border-bottom: 2px solid rgb(218, 81, 47);
     font-family: 'Alef', sans-serif;
+    overflow: hidden;
 }
 
 .editing-options {
