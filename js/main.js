@@ -20,9 +20,6 @@ function init() {
         saveToStorage('keywordsMap', gKeyWordsMap)
     }
 
-    // init event listener of mobile move
-    mobileMove();
-
     renderKeywordsDatalist();
     initGallery();
 }
@@ -44,19 +41,13 @@ function initCanvas() {
     var img;
     if (gMeme.elImg) img = gMeme.elImg;
     else img = getImageById(gMeme.selectedImgId);
-    
+
     var imageRatio = img.width / img.height;
-    // // if img height is more than canvas
-    // if (img.height > gCanvas.height) {
-    //     img.height = gCanvas.height;
-    //     img.width = img.height / imageRatio;
-    //     console.log(img.height / imageRatio, img.width);
-    // }
 
     var canvasComputed = {};
-    
+
     canvasComputed = { width: gCanvas.width, height: gCanvas.width / imageRatio };
-    
+
     // if computed height is smaller than canvas - miminize canvas height
     if (canvasComputed.height < gCanvas.height) {
         gCanvas.height = canvasComputed.height;
@@ -160,10 +151,16 @@ function onMoveCanvasEl(direction) {
     moveCanvasEl(direction);
 }
 
-function onClickCanvas(ev) {
+function onClickCanvas(ev, isMobile = false) {
 
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
+
+    // if on mobile - different calc
+    if (isMobile) {
+        mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
+        mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
+    }
 
     gPrevPos.x = mouseX;
     gPrevPos.y = mouseY;
@@ -174,6 +171,26 @@ function onClickCanvas(ev) {
             && mouseX < line.width + line.x + 10 && mouseX > line.x - 10);
     });
 
+    var eventToAdd = 'mousemove';
+
+    // if on mobile - different event
+    if (isMobile) {
+        eventToAdd = 'touchmove';
+    }
+
+    // if a line was selected
+    if (line) {
+        line.isSelected = true;
+        gCanvas.addEventListener(eventToAdd, drag, false);
+        if (!isMobile) {
+            gIsMoving = true;
+        }
+    } else {
+        if (isMobile) {
+            gCanvas.removeEventListener('touchmove', drag, false);
+        }
+    }
+
     // if clicked on different line
     // (or not on any line when there was a line selected)
     if (gMeme.selectedLine !== line) {
@@ -183,13 +200,6 @@ function onClickCanvas(ev) {
         }
         // update current line
         gMeme.selectedLine = line;
-    }
-
-    // if a line was selected
-    if (line) {
-        line.isSelected = true;
-        gCanvas.addEventListener('mousemove', drag, false);
-        gIsMoving = true;
     }
 
     // render text editor according to line
@@ -238,8 +248,17 @@ function getLineCorectY() {
 // DRAG AND DROP functions
 
 function drag(ev) {
+
     var mouseX = ev.clientX - gCanvas.offsetLeft;
     var mouseY = ev.clientY - gCanvas.offsetTop;
+    
+    // if on mobile - different calc
+    if (ev.type === 'touchmove') {    
+        mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
+        mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
+
+        // TODO: handle moving out of canvas if mobile
+    }
 
     gMeme.selectedLine.x += mouseX - gPrevPos.x;
     gMeme.selectedLine.y += mouseY - gPrevPos.y;
@@ -250,11 +269,18 @@ function drag(ev) {
     renderMeme();
 }
 
+// TODO: remove ev parameter - not used
 function onMouseUp(ev) {
     if (gIsMoving) {
         gCanvas.removeEventListener('mousemove', drag, false);
         gIsMoving = false;
     }
+}
+
+// MOBILE DRAG AND DROP function
+
+function onTouchStart(ev) {
+    onClickCanvas(ev, true);
 }
 
 // RENDER functions
@@ -439,7 +465,7 @@ function drawImgOnCanvas(img) {
 
 // called when key is pressed while user on input line text
 function onKeyPress(ev) {
-    if(ev.key === 'Enter') {
+    if (ev.key === 'Enter') {
         // remove selection and current line
         gMeme.selectedLine.isSelected = false;
         gMeme.selectedLine = undefined;
@@ -500,25 +526,5 @@ function onKeywordSelect(keyword) {
         updateKeyWordsMap(keyword);
         var imgs = getImgsByFilter(keyword);
         renderGallery(imgs);
-    }
-}
-
-// MOBILE DRAG AND DROP function
-
-function mobileMove() {
-    var el = document.querySelector('#canvas');
-    el.addEventListener("touchmove", handleMove, false);
-
-    function handleMove(ev) {
-        ev.preventDefault();
-
-        if (gMeme.selectedLine) {
-            var mouseX = ev.changedTouches[0].clientX - gCanvas.offsetLeft;
-            var mouseY = ev.changedTouches[0].clientY - gCanvas.offsetTop;
-
-            gMeme.selectedLine.x = mouseX;
-            gMeme.selectedLine.y = mouseY;
-            renderMeme();
-        }
     }
 }
