@@ -1,9 +1,9 @@
 
 main {
-    grid-area: main; 
-    /* background: url('../img/back.jpg') repeat; */
+    grid-area: main;
     border-radius: 15px;
     margin: 0 5px;
+    overflow: hidden;
 }
 
 canvas {
@@ -67,7 +67,6 @@ aside h2 {
 
 .editing-options {
     margin-top: 1px;
-    overflow: hidden;
 }
 
 .font-edit {
