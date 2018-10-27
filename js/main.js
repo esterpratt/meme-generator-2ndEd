@@ -1,5 +1,11 @@
 'use strict';
 
+// TODO: MOBILE - to show only img and text input while keyboard is open
+// TODO: LANGUAGE - render according to current language (text editor, delete modal)
+// TODO: CONTINUOUS MOVING - on mousedown instead of onclick - 
+//       set interval and remove it when mouse is up.
+//       also - implement it on keyboard arrows.
+
 var gCanvas;
 var gCtx;
 var gIsMoving;
