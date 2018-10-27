@@ -16,7 +16,7 @@ aside{
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     margin: 0 5px;
-    /* overflow-y: auto; */
+    overflow-y: auto;
     border-bottom:1px black solid;
     align-self: center;
 }

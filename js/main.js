@@ -486,6 +486,7 @@ function onSelectImg(id) {
     document.querySelector('main').style.display = 'flex';
     createMeme(id);
     initCanvas();
+    renderTextEditor();
     renderMeme();
 }
 
